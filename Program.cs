@@ -76,8 +76,8 @@ namespace Bowling2
                 currentFrame++;
             }
 
-            if (currentFrame > 10)
-                currentFrame = 10;
+            if (currentFrame > 11)
+                currentFrame = 11;
         }
 
         //public int ScoreForFrame(int frame)
@@ -103,16 +103,21 @@ namespace Bowling2
                 currentFrame++)
             {
                 int firstThrow = throws[ball++];
-                int secondThrow = throws[ball++];
-                int frameScore = firstThrow + secondThrow;
+
 
                 if (firstThrow == 10)
-                    frameScore += throws[ball] + throws[++ball];
+                    score += firstThrow + throws[ball] + throws[ball+1];
+                else
+                {
+                    int secondThrow = throws[ball++];
+                    int frameScore = firstThrow + secondThrow;
 
-                else if (frameScore == 10)
-                    frameScore += throws[ball];
+                    if (frameScore == 10)
+                        frameScore += throws[ball];
+
+                    score += frameScore;
+                }
                 
-                score += frameScore;
             }
             return score;
         }
